@@ -32,8 +32,8 @@ const getColumns = (that: GoodTable): ColumnProps<any>[] => {
       title: '分类',
       dataIndex: 'sort',
       render: text =>
-        that.props.sortList.length &&
-        that.props.sortList.find(item => item._id === text).name
+        that.props.sortList.length ?
+        that.props.sortList.find(item => item._id === text).name : '--'
     },
     { ...commonTableDefaultProps, title: '商品图', dataIndex: 'imgUrl' },
     { ...commonTableDefaultProps, title: '价格', dataIndex: 'price' },
