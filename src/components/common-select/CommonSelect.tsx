@@ -14,6 +14,7 @@ interface CommonSelectProps extends Basic.BaseProps, SelectProps {
 }
 
 export default class CommonSelect extends Component<CommonSelectProps> {
+  static Option = Select.Option;
   render() {
     const { dataSource, onRender } = this.props;
     // if (dataSource instanceof Array && (!dataSource || !dataSource.length)) {
@@ -25,7 +26,7 @@ export default class CommonSelect extends Component<CommonSelectProps> {
     const data =
       dataSource instanceof Array ? dataSource : transformEnumKeys(dataSource);
     return (
-      <Select allowClear {...this.props} placeholder="请选择">
+      <Select allowClear placeholder="请选择" {...this.props}>
         {data.map((item, index) => onRender(item, index))}
       </Select>
     );

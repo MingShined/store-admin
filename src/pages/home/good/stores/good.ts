@@ -10,7 +10,7 @@ const initState = {
    */
   searchParams: {
     page: 0,
-    size: 10
+    size: 10,
   } as any,
   /**
    * @name 列表

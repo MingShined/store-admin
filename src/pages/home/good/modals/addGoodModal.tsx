@@ -18,6 +18,7 @@ import CommonService from 'src/services/CommonService';
 import CommonSelect from 'src/components/common-select/CommonSelect';
 import store, { connect, Models } from 'store';
 import { RematchRootState, RematchDispatch } from '@rematch/core';
+import DatePick from 'src/components/date-picker';
 
 const editorProps = {
   height: 500,
@@ -111,6 +112,34 @@ const getFormData = (that: AddGoodModal): FormDataProps[] => {
       extra: <span style={{ marginLeft: 20 }}>元</span>
     },
     {
+      key: 'gmtCreate',
+      label: '创建时间',
+      options: {
+        rules: [{ required: true, message: '请选择创建时间' }],
+        initialValue: isEdit ? goodValue.gmtCreate : ''
+      },
+      node: <DatePick style={{ width: 150 }} />
+    },
+    {
+      key: 'status',
+      label: '状态',
+      options: {
+        rules: [{ required: true, message: '请选择状态' }],
+        initialValue: isEdit ? goodValue.status : ''
+      },
+      node: (
+        <CommonSelect
+          dataSource={[{ key: 0, title: '下架' }, { key: 1, title: '上架' }]}
+          style={{ width: 150 }}
+          onRender={item => (
+            <CommonSelect.Option key={item.key} value={item.key}>
+              {item.title}
+            </CommonSelect.Option>
+          )}
+        />
+      )
+    },
+    {
       key: 'details',
       label: '描述',
       options: {
@@ -124,19 +153,21 @@ const getFormData = (that: AddGoodModal): FormDataProps[] => {
   ];
 };
 
-const mapState = ({ ['good']: state }: RematchRootState<Models>) => ({ ...state });
-const mapDispatch = ({ }: RematchDispatch<Models>) => ({ });
+const mapState = ({ ['good']: state }: RematchRootState<Models>) => ({
+  ...state
+});
+const mapDispatch = ({  }: RematchDispatch<Models>) => ({});
 interface Props
-extends Partial<ReturnType<typeof mapState>>,
-Partial<ReturnType<typeof mapDispatch>>,
-Basic.BaseProps {
+  extends Partial<ReturnType<typeof mapState>>,
+    Partial<ReturnType<typeof mapDispatch>>,
+    Basic.BaseProps {
   isEdit: boolean;
   id?: string;
 }
 
 @connect(
-mapState,
-mapDispatch
+  mapState,
+  mapDispatch
 )
 export default class AddGoodModal extends Component<Props> {
   form: WrappedFormUtils = null;

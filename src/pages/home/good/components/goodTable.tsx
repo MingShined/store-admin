@@ -14,7 +14,7 @@ import CommonTable from 'src/components/common-table';
 import store, { connect, Models } from 'store';
 import { RematchRootState, RematchDispatch } from '@rematch/core';
 import ButtonGroup from 'antd/lib/button/button-group';
-import { Button, Modal, message } from 'antd';
+import { Button, Modal, message, Badge } from 'antd';
 import AddGoodModal from '../modals/addGoodModal';
 import IndexService from '../../service';
 
@@ -31,10 +31,23 @@ const getColumns = (that: GoodTable): ColumnProps<any>[] => {
       ...commonTableDefaultProps,
       title: '分类',
       dataIndex: 'sort',
-      render: text => that.props.sortList.length && that.props.sortList.find(item => item._id === text).name
+      render: text =>
+        that.props.sortList.length &&
+        that.props.sortList.find(item => item._id === text).name
     },
     { ...commonTableDefaultProps, title: '商品图', dataIndex: 'imgUrl' },
     { ...commonTableDefaultProps, title: '价格', dataIndex: 'price' },
+    {
+      ...commonTableDefaultProps,
+      title: '状态',
+      dataIndex: 'status',
+      render: text => (
+        <Badge
+          status={text ? 'success' : 'error'}
+          text={text ? '上架' : '下架'}
+        />
+      )
+    },
     {
       ...commonTableDefaultProps,
       title: '操作',
