@@ -1,8 +1,8 @@
 import { init, ModelConfig, Models as RModels, ModelEffects } from '@rematch/core';
 import { connect as reduxConnect } from 'react-redux';
 import createLoadingPlugin from '@rematch/loading';
-import good from './pages/home/good/stores/good';
-import sort from './pages/home/sort/stores/sort';
+import good from './pages/good/stores/good';
+import sort from './pages/sort/stores/sort';
 const models = {
   good,
   sort

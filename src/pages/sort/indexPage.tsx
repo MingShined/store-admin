@@ -2,18 +2,16 @@
  * @name 分类管理
  * @author MingShined
  */
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Basic } from 'src/types';
 import PageLayout from 'src/components/page-layout';
 
-import { ColumnProps } from 'antd/lib/table';
+import Table, { ColumnProps } from 'antd/lib/table';
 import {
   commonTableDefaultProps,
   renderEnumColumn,
   renderDateColumn
 } from 'src/components/common-table/uitls';
-import CommonTable from 'src/components/common-table';
-import CommonModal from 'src/components/common-modal';
 import AddSortModal from './modals/addSortModal';
 import ButtonGroup from 'antd/lib/button/button-group';
 import { Button, message, Modal } from 'antd';
@@ -86,11 +84,11 @@ export default class SortManage extends Component<Props> {
         <div style={{ marginBottom: 20 }}>
           <AddSortModal onSuccess={() => this.queryList()} isEdit={false} />
         </div>
-        <CommonTable
+        <Table
           columns={getColumns(this)}
-          dataSource={dataSource}
+          dataSource={dataSource || []}
           rowKey={(row, index) => index.toString()}
-          //   pageProps={{ total, page, size: 20 }}
+          bordered
         />
       </PageLayout>
     );

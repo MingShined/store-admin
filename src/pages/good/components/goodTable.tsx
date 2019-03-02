@@ -50,6 +50,17 @@ const getColumns = (that: GoodTable): ColumnProps<any>[] => {
     },
     {
       ...commonTableDefaultProps,
+      title: '是否推荐',
+      dataIndex: 'hot',
+      render: text => (
+        <Badge
+          status={text ? 'success' : 'error'}
+          text={text ? '推荐' : '不推荐'}
+        />
+      )
+    },
+    {
+      ...commonTableDefaultProps,
       title: '操作',
       dataIndex: 'operator',
       render: (text, row, index) => (

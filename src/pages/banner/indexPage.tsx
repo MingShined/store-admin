@@ -62,7 +62,7 @@ export default class BannerManage extends Component<Props> {
     return (
       <PageLayout title="轮播管理">
         <CommonForm
-          btnProps={{ place: 'start', submitText: '上传' }}
+          btnProps={{ place: 'start', submitText: '提交' }}
           formData={getFormData(this)}
           onSubmit={this.handleUpload}
           onReset={() => this.setState({ bannerList: [] })}

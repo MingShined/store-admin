@@ -125,11 +125,30 @@ const getFormData = (that: AddGoodModal): FormDataProps[] => {
       label: '状态',
       options: {
         rules: [{ required: true, message: '请选择状态' }],
-        initialValue: isEdit ? goodValue.status : ''
+        initialValue: isEdit ? goodValue.status : undefined
       },
       node: (
         <CommonSelect
           dataSource={[{ key: 0, title: '下架' }, { key: 1, title: '上架' }]}
+          style={{ width: 150 }}
+          onRender={item => (
+            <CommonSelect.Option key={item.key} value={item.key}>
+              {item.title}
+            </CommonSelect.Option>
+          )}
+        />
+      )
+    },
+    {
+      key: 'hot',
+      label: '是否推荐',
+      options: {
+        rules: [{ required: true, message: '请选择状态' }],
+        initialValue: isEdit ? goodValue.status : undefined
+      },
+      node: (
+        <CommonSelect
+          dataSource={[{ key: 0, title: '不推荐' }, { key: 1, title: '推荐' }]}
           style={{ width: 150 }}
           onRender={item => (
             <CommonSelect.Option key={item.key} value={item.key}>

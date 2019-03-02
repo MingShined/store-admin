@@ -49,6 +49,10 @@ const IndexService = {
     const url = `/api/good/${id}`;
     return httpDelete(url);
   },
+  async queryCustomer() {
+    const url = `/api/user`;
+    return httpGet(url);
+  },
 };
 
 export default IndexService;
