@@ -159,6 +159,31 @@ const getFormData = (that: AddGoodModal): FormDataProps[] => {
       )
     },
     {
+      key: 'size',
+      label: '型号',
+      options: {
+        rules: [{ required: true, message: '请选择型号' }],
+        initialValue: isEdit ? goodValue.size : undefined
+      },
+      node: (
+        <CommonSelect
+          mode="multiple"
+          dataSource={[
+            { key: 1, title: 'S' },
+            { key: 2, title: 'M' },
+            { key: 3, title: 'L' },
+            { key: 4, title: 'XS' }
+          ]}
+          style={{ width: 250 }}
+          onRender={item => (
+            <CommonSelect.Option key={item.key} value={item.key}>
+              {item.title}
+            </CommonSelect.Option>
+          )}
+        />
+      )
+    },
+    {
       key: 'details',
       label: '描述',
       options: {
@@ -215,11 +240,7 @@ export default class AddGoodModal extends Component<Props> {
     });
   };
   handleCreate = async values => {
-    const result = {
-      ...values,
-      bannerList: values.bannerList.map(item => item.url)
-    };
-    const { data, status } = await IndexService.createGood(result);
+    const { data, status } = await IndexService.createGood(values);
     if (status === 200 && data) {
       message.success('创建成功');
       store.dispatch.good.queryList();
@@ -249,7 +270,7 @@ export default class AddGoodModal extends Component<Props> {
     });
     const { data, status } = await IndexService.findGood(id);
     if (status && data) {
-      const goodValue = { ...data, bannerList: data.bannerList.split(',') };
+      const goodValue = { ...data };
       this.setState({
         goodValue,
         loading: false

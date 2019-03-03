@@ -6,7 +6,7 @@ export default class PageFooterLayout extends Component {
   render() {
     return (
       <Footer style={{ textAlign: 'center' }}>
-        <p>Copyright@陈先生有酒有故事</p>
+        <p>Copyright@Lemmon</p>
       </Footer>
     );
   }
