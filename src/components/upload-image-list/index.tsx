@@ -107,7 +107,7 @@ export default class UploadImgList extends React.Component<UploadImgListProps> {
     });
   };
   componentWillReceiveProps(nextProps: UploadImgListProps) {
-    if (nextProps.value) {
+    if (nextProps.value && Array.isArray(nextProps.value)) {
       if (nextProps.type === 'simple') {
         // nextProps.value.length!=
         this.setState({
