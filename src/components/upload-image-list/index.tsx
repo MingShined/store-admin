@@ -29,7 +29,7 @@ export default class UploadImgList extends React.Component<UploadImgListProps> {
   constructor(props) {
     super(props);
     this.state.fileList =
-      props.value && props.value.length > 0
+      props.value && Array.isArray(props.value)
         ? props.value.map((item, index) => {
             let uid = index;
             if (this.state.fileList[index]) {
