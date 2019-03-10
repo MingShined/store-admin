@@ -97,7 +97,7 @@ const getFormData = (that: AddGoodModal): FormDataProps[] => {
       label: '轮播图',
       options: {
         rules: [{ required: true, message: '请选择轮播图片' }],
-        initialValue: isEdit ? goodValue.bannerList ? goodValue.bannerList : [] : []
+        initialValue: isEdit ? goodValue.bannerList.split(',') : []
       },
       node: <UploadImgList type="simple" needRemove={true} />
     },
