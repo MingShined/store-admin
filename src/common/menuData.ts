@@ -20,7 +20,12 @@ const menuData: MenuBean[] = [
     path: '/customer',
     name: '客户管理',
     type: MenuType.Item
-  }
+  },
+  {
+    path: '/shopcart',
+    name: '购物车管理',
+    type: MenuType.Item
+  },
 ];
 
 export default menuData;

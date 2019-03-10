@@ -1,4 +1,4 @@
-const devPath = 'http://127.0.1:7001/';
+const devPath = 'http://127.0.0.1:7001/';
 export default {
   '/api/': {
     target: devPath,
