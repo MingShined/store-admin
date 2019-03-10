@@ -53,6 +53,9 @@ const editorProps = {
 
 const getFormData = (that: AddGoodModal): FormDataProps[] => {
   const goodValue: any = that.state.goodValue;
+  if (!Object.keys(goodValue)) {
+    return;
+  }
   const { isEdit, sortList } = that.props;
   return [
     {
@@ -97,7 +100,7 @@ const getFormData = (that: AddGoodModal): FormDataProps[] => {
       label: '轮播图',
       options: {
         rules: [{ required: true, message: '请选择轮播图片' }],
-        initialValue: isEdit ? goodValue.bannerList.split(',') : []
+        initialValue: isEdit ? goodValue.bannerList : []
       },
       node: <UploadImgList type="simple" needRemove={true} />
     },
