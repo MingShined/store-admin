@@ -56,6 +56,25 @@ const IndexService = {
   async queryOrder() {
     const url = `/api/all-order`;
     return httpGet(url);
+  },
+  async consignmentGood(data) {
+    const url = `/api/order`;
+    return httpPut(url, data);
+  },
+  async sendMessage(payload) {
+    const url = `http://112.74.76.186:8030/service/httpService/httpInterface.do`;
+    const data = {
+      username: 'JSM42615',
+      password: 'd83bgb8a',
+      veryCode: 'ce5hzofbklen',
+      content: `@1@=${payload.realName}`,
+      method: 'sendMsg',
+      msgtype: 2,
+      tempid: 'JSM42615',
+      code: 'utf-8',
+      mobile: payload.mobile
+    };
+    return httpPost(url, data);
   }
 };
 

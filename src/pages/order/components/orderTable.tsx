@@ -13,7 +13,7 @@ import {
 import CommonTable from 'src/components/common-table';
 import IndexService from 'src/pages/service';
 import ButtonGroup from 'antd/lib/button/button-group';
-import { Badge, Button } from 'antd';
+import { Badge, Button, message, Modal } from 'antd';
 import store, { connect, Models } from 'store';
 import { RematchRootState, RematchDispatch } from '@rematch/core';
 
@@ -23,7 +23,7 @@ import { RematchRootState, RematchDispatch } from '@rematch/core';
 enum OrderStatus {
   客户已下单,
   已出库,
-  已收货
+  交易完成
 }
 
 const getColumns = (that: OrderTable): ColumnProps<any>[] => {
@@ -102,7 +102,33 @@ const getColumns = (that: OrderTable): ColumnProps<any>[] => {
       dataIndex: 'operator',
       render: (text, row) => (
         <ButtonGroup>
-          <Button type="primary">发起出库</Button>
+          {row.orderInfo.status === 0 && (
+            <Button
+              type="primary"
+              onClick={() => that.handleConsignment({ id: row._id, status: 1 })}
+            >
+              发起出库
+            </Button>
+          )}
+          {/* {row.orderInfo.status === 1 && (
+            <Button
+              type="danger"
+              onClick={() =>
+                that.confirmArrive({
+                  realName: row.realName,
+                  mobile: row.mobile
+                })
+              }
+            >
+              确认送达
+            </Button>
+          )} */}
+          {row.orderInfo.status === 2 && (
+            <span style={{ color: 'green' }}>
+              <Badge status="success" />
+              交易完成
+            </span>
+          )}
         </ButtonGroup>
       )
     }
@@ -137,6 +163,38 @@ export default class OrderTable extends Component<Props> {
     if (status === 200 && data) {
       this.setState({ orderList: data });
     }
+  }
+  handleConsignment(payload) {
+    Modal.confirm({
+      title: '发起出库',
+      content: '确定发起出库吗？',
+      okText: '确定',
+      maskClosable: true,
+      cancelText: '取消',
+      onOk: async () => {
+        const { data, status } = await IndexService.consignmentGood(payload);
+        if (status === 200 && data) {
+          message.success('发起出库成功');
+          this.queryOrderList();
+        }
+      }
+    });
+  }
+  confirmArrive(payload) {
+    Modal.confirm({
+      title: '确定送达，发送短信',
+      content: '确定已送达，并向客户发送短信吗',
+      okText: '确定',
+      maskClosable: true,
+      cancelText: '取消',
+      onOk: async () => {
+        const { data, status } = await IndexService.sendMessage(payload);
+        if (status === 200) {
+          message.success('发送短信成功');
+          this.queryOrderList();
+        }
+      }
+    });
   }
   render() {
     // const {} = this.props;
