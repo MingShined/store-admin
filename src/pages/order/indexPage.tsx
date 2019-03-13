@@ -5,16 +5,17 @@
 import React, { Component } from 'react';
 import { Basic } from 'src/types';
 import PageLayout from 'src/components/page-layout';
+import OrderTable from './components/orderTable';
 
 interface Props extends Basic.BaseProps {}
 
-export default class ShopcartManage extends Component<Props> {
+export default class OrderManage extends Component<Props> {
   render() {
     // const {} = this.props;
     // const {} = this.state;
     return (
-      <PageLayout title="购物车管理">
-        <p>我是一个tsReact Demo</p>
+      <PageLayout title="订单管理">
+        <OrderTable />
       </PageLayout>
     );
   }

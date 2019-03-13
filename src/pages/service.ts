@@ -53,6 +53,10 @@ const IndexService = {
     const url = `/api/user`;
     return httpGet(url);
   },
+  async queryOrder() {
+    const url = `/api/all-order`;
+    return httpGet(url);
+  }
 };
 
 export default IndexService;

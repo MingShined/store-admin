@@ -22,8 +22,8 @@ const menuData: MenuBean[] = [
     type: MenuType.Item
   },
   {
-    path: '/shopcart',
-    name: '购物车管理',
+    path: '/order',
+    name: '订单管理',
     type: MenuType.Item
   },
 ];
