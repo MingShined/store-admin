@@ -16,6 +16,7 @@ import ButtonGroup from 'antd/lib/button/button-group';
 import { Badge, Button, message, Modal } from 'antd';
 import store, { connect, Models } from 'store';
 import { RematchRootState, RematchDispatch } from '@rematch/core';
+import { SizeType } from 'src/pages/good/modals/addGoodModal';
 
 /**
  * @name 订单状态
@@ -62,6 +63,12 @@ const getColumns = (that: OrderTable): ColumnProps<any>[] => {
       ...commonTableDefaultProps,
       title: '商品价格',
       dataIndex: 'orderInfo.price'
+    },
+    {
+      ...commonTableDefaultProps,
+      title: '商品型号',
+      dataIndex: 'orderInfo.size',
+      render: text => SizeType[text]
     },
     {
       ...commonTableDefaultProps,

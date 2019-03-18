@@ -20,6 +20,16 @@ import store, { connect, Models } from 'store';
 import { RematchRootState, RematchDispatch } from '@rematch/core';
 import DatePick from 'src/components/date-picker';
 
+/**
+ * @name 商品型号
+ */
+export enum SizeType {
+  S = 1,
+  M,
+  L,
+  XS
+}
+
 const editorProps = {
   height: 500,
   contentFormat: 'html',
@@ -171,16 +181,11 @@ const getFormData = (that: AddGoodModal): FormDataProps[] => {
       node: (
         <CommonSelect
           mode="multiple"
-          dataSource={[
-            { key: 1, title: 'S' },
-            { key: 2, title: 'M' },
-            { key: 3, title: 'L' },
-            { key: 4, title: 'XS' }
-          ]}
+          dataSource={SizeType}
           style={{ width: 250 }}
           onRender={item => (
-            <CommonSelect.Option key={item.key} value={item.key}>
-              {item.title}
+            <CommonSelect.Option key={item} value={item}>
+              {SizeType[item]}
             </CommonSelect.Option>
           )}
         />

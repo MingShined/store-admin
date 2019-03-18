@@ -15,15 +15,8 @@ import store, { connect, Models } from 'store';
 import { RematchRootState, RematchDispatch } from '@rematch/core';
 import ButtonGroup from 'antd/lib/button/button-group';
 import { Button, Modal, message, Badge } from 'antd';
-import AddGoodModal from '../modals/addGoodModal';
+import AddGoodModal, { SizeType } from '../modals/addGoodModal';
 import IndexService from '../../service';
-
-enum SizeType {
-  S = 1,
-  M,
-  L,
-  XS
-}
 
 const getColumns = (that: GoodTable): ColumnProps<any>[] => {
   return [
