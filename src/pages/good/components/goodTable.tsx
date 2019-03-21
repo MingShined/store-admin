@@ -4,7 +4,7 @@
  */
 import React, { Component, Fragment } from 'react';
 import { Basic } from 'src/types';
-import { ColumnProps } from 'antd/lib/table';
+import Table, { ColumnProps } from 'antd/lib/table';
 import {
   commonTableDefaultProps,
   renderEnumColumn,
@@ -130,7 +130,7 @@ export default class GoodTable extends Component<Props> {
     // const {} = this.state;
     return (
       <Fragment>
-        <CommonTable
+        <Table
           loading={loading}
           columns={getColumns(this)}
           dataSource={goodList}
