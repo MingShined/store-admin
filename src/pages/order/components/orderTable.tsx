@@ -4,7 +4,7 @@
  */
 import React, { Component, Fragment } from 'react';
 import { Basic } from 'src/types';
-import Table, { ColumnProps } from 'antd/lib/table';
+import { ColumnProps } from 'antd/lib/table';
 import {
   commonTableDefaultProps,
   renderEnumColumn,
@@ -13,7 +13,7 @@ import {
 import CommonTable from 'src/components/common-table';
 import IndexService from 'src/pages/service';
 import ButtonGroup from 'antd/lib/button/button-group';
-import { Badge, Button, message, Modal } from 'antd';
+import { Badge, Button, message, Modal, Table } from 'antd';
 import store, { connect, Models } from 'store';
 import { RematchRootState, RematchDispatch } from '@rematch/core';
 import { SizeType } from 'src/pages/good/modals/addGoodModal';
@@ -212,6 +212,7 @@ export default class OrderTable extends Component<Props> {
           columns={getColumns(this)}
           dataSource={orderList}
           rowKey={(row, index) => index.toString()}
+          bordered
           //   pageProps={{ total, page, size: 20 }}
         />
       </Fragment>
