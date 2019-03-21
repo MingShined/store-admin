@@ -4,7 +4,7 @@
  */
 import React, { Component, Fragment } from 'react';
 import { Basic } from 'src/types';
-import { ColumnProps } from 'antd/lib/table';
+import Table, { ColumnProps } from 'antd/lib/table';
 import {
   commonTableDefaultProps,
   renderEnumColumn,
@@ -208,7 +208,7 @@ export default class OrderTable extends Component<Props> {
     const { orderList } = this.state;
     return (
       <Fragment>
-        <CommonTable
+        <Table
           columns={getColumns(this)}
           dataSource={orderList}
           rowKey={(row, index) => index.toString()}
