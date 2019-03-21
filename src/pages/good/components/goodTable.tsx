@@ -4,7 +4,7 @@
  */
 import React, { Component, Fragment } from 'react';
 import { Basic } from 'src/types';
-import Table, { ColumnProps } from 'antd/lib/table';
+import { ColumnProps } from 'antd/lib/table';
 import {
   commonTableDefaultProps,
   renderEnumColumn,
@@ -14,7 +14,7 @@ import CommonTable from 'src/components/common-table';
 import store, { connect, Models } from 'store';
 import { RematchRootState, RematchDispatch } from '@rematch/core';
 import ButtonGroup from 'antd/lib/button/button-group';
-import { Button, Modal, message, Badge } from 'antd';
+import { Button, Modal, message, Badge, Table } from 'antd';
 import AddGoodModal, { SizeType } from '../modals/addGoodModal';
 import IndexService from '../../service';
 
@@ -131,6 +131,7 @@ export default class GoodTable extends Component<Props> {
     return (
       <Fragment>
         <Table
+          bordered
           loading={loading}
           columns={getColumns(this)}
           dataSource={goodList}
