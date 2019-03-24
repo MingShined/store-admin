@@ -213,6 +213,7 @@ export default class OrderTable extends Component<Props> {
           dataSource={orderList}
           rowKey={(row, index) => index.toString()}
           bordered
+          scroll={{ x: '130%' }}
           //   pageProps={{ total, page, size: 20 }}
         />
       </Fragment>
