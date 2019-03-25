@@ -42,7 +42,7 @@ const getColumns = (that: GoodTable): ColumnProps<any>[] => {
       ...commonTableDefaultProps,
       title: '型号',
       dataIndex: 'size',
-      render: text => text.map(item => SizeType[item]).join()
+      render: text => text && text.map(item => SizeType[item]).join()
     },
     {
       ...commonTableDefaultProps,
@@ -127,19 +127,29 @@ export default class GoodTable extends Component<Props> {
       searchParams: { page, size },
       loading
     } = this.props;
+    const pageProps = {
+      total: +total,
+      current: page + 1 || 1,
+      defaultPageSize: size || 10,
+      showQuickJumper: true,
+      showTotal: (t, range) =>
+        `共${total}条数据 第${page + 1}页 / 共${Math.ceil(
+          total / (size || 10)
+        )}页`,
+      onChange: (pageValue, sizeValue) => {
+        this.handleChangePage(pageValue - 1, sizeValue);
+      }
+    };
     // const {} = this.state;
     return (
-      <Fragment>
-        <Table
-          bordered
-          loading={loading}
-          columns={getColumns(this)}
-          dataSource={goodList}
-          rowKey={(row, index) => index.toString()}
-          pageProps={{ total, page, size }}
-          onPageChange={this.handleChangePage}
-        />
-      </Fragment>
+      <Table
+        bordered
+        loading={loading}
+        columns={getColumns(this)}
+        dataSource={goodList}
+        rowKey={(row, index) => index.toString()}
+        pagination={pageProps}
+      />
     );
   }
 }
