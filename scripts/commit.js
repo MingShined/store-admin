@@ -59,7 +59,7 @@ co(function*() {
   const tips = getTips(commitType);
   console.log(chalk.yellow(`\n${tips}\n`));
   const { commitMsg } = yield inquirer.prompt(commitInput);
-  exec(`git commit -m ${commitMsg}`);
+  exec(`git commit -m ${commitType}/${commitMsg}`);
 });
 
 const getTips = type => {
