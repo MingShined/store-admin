@@ -54,13 +54,13 @@ const commitInput = [
 ];
 
 co(function*() {
-exec(`npm run lint:fix && git add .`);
+  exec(`git add . && npm run lint:test`);
   const { commitType } = yield inquirer.prompt(commitOptions);
   console.log(commitType);
   const tips = getTips(commitType);
   console.log(chalk.yellow(`\n${tips}\n`));
   const { commitMsg } = yield inquirer.prompt(commitInput);
-  exec(`npm run lint:test && git commit -m ${commitType}/${commitMsg} && git push`);
+  exec(`git commit -m ${commitType}/${commitMsg} && git push`);
 });
 
 const getTips = type => {
