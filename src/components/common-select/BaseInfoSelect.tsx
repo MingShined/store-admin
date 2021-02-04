@@ -2,12 +2,12 @@
  * @name 基础信息下拉组件
  * @author MingShined
  */
+import { RematchDispatch, RematchRootState } from '@rematch/core';
+import { Select } from 'antd';
+import { SelectProps } from 'antd/lib/select';
 import React, { Component, Fragment } from 'react';
 import { Basic } from 'src/types';
-import { Select } from 'antd';
-import store, { connect, Models } from 'store';
-import { RematchRootState, RematchDispatch } from '@rematch/core';
-import { SelectProps } from 'antd/lib/select';
+import { connect, Models } from 'store';
 import { baseInfoEnum } from './type';
 
 const Option = Select.Option;
@@ -22,10 +22,7 @@ interface BaseInfoSelectProps
   type: baseInfoEnum;
 }
 
-@connect(
-  mapState,
-  mapDispatch
-)
+@connect(mapState, mapDispatch)
 export default class BaseInfoSelect extends Component<BaseInfoSelectProps> {
   state = {
     data: []
@@ -44,11 +41,13 @@ export default class BaseInfoSelect extends Component<BaseInfoSelectProps> {
           <Option key="empty" value="">
             请选择
           </Option>
-          {eval(`baseInfo.${type}`).map((item, index) => (
+          // @ts-ignore
+          // tslint:disable-next-line:no-eval
+          {/* {eval(`baseInfo.${type}`).map((item, index) => (
             <Option key={item.dictValue.toString()} value={item.dictValue}>
               {item.dictValue}
             </Option>
-          ))}
+          ))} */}
         </Select>
       </Fragment>
     );

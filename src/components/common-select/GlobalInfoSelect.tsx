@@ -2,13 +2,13 @@
  * @name 全局信息下拉组件
  * @author MingShined
  */
-import React, { Component, Fragment } from 'react';
-import { Basic } from 'src/types';
+import { RematchDispatch, RematchRootState } from '@rematch/core';
 import { Select } from 'antd';
-import { globalInfoEnum } from './type';
-import store, { connect, Models } from 'store';
-import { RematchRootState, RematchDispatch } from '@rematch/core';
 import { SelectProps } from 'antd/lib/select';
+import React, { Component } from 'react';
+import { Basic } from 'src/types';
+import { connect, Models } from 'store';
+import { globalInfoEnum } from './type';
 
 const Option = Select.Option;
 
@@ -40,11 +40,11 @@ export default class GlobalInfoSelect extends Component<GlobalInfoSelectProps> {
         <Option key="empty" value="">
           请选择
         </Option>
-        {eval(`globalInfo.${type}`).map((item, index) => (
+        {/* {eval(`globalInfo.${type}`).map((item, index) => (
             <Option key={item.id.toString()} value={item.id}>
               {item.name}
             </Option>
-          ))}
+          ))} */}
       </Select>
     );
   }

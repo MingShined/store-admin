@@ -1,11 +1,9 @@
-import React, { CSSProperties } from 'react';
-import { Card, Icon } from 'antd';
-import PageHeaderLayout from 'src/layouts/PageHeaderLayout';
+import { Icon } from 'antd';
 import { Bind } from 'lodash-decorators/bind';
-import styles from './imageBox.less';
+import React, { CSSProperties } from 'react';
 import UploadImg from 'src/components/UploadImg';
 import BaseProps from 'src/declare/baseProps';
-import { downloadRequest } from 'src/utils/request';
+import styles from './imageBox.less';
 
 interface BaseValue {
   url: string;
@@ -32,13 +30,7 @@ export default class ImageBox extends React.Component<
     if (this.props.smallImageHeight) {
       smallImageHeight = this.props.smallImageHeight;
     }
-    return (
-      url +
-      '?x-oss-process=image/resize,h_' +
-      smallImageHeight +
-      ',w_' +
-      smallImageWidth
-    );
+    return `${url}?x-oss-process=image/resize,h_${smallImageHeight},w_${smallImageWidth}`;
   }
   @Bind()
   showImage(url) {

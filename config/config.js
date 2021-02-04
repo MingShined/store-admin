@@ -55,7 +55,7 @@ export default {
         hardSource: false
       }
     ],
-    ['./src/plugins/rematchPlugin/index.js', {}]
+    ['./src/plugins/rematchPlugin/index.js', {}],
   ],
   alias: {
     src: resolve(__dirname, '../src'),

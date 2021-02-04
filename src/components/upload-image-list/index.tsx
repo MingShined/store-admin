@@ -1,6 +1,6 @@
+import { Icon, message, Modal, Upload } from 'antd';
+import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface';
 import React from 'react';
-import { Upload, Icon, Modal, message } from 'antd';
-import { UploadFile, UploadChangeParam } from 'antd/lib/upload/interface';
 import { checkFile } from 'src/utils/utils';
 export interface UploadImgListProps {
   style?: React.CSSProperties;
@@ -31,16 +31,16 @@ export default class UploadImgList extends React.Component<UploadImgListProps> {
     this.state.fileList =
       props.value && Array.isArray(props.value)
         ? props.value.map((item, index) => {
-            let uid = index;
-            if (this.state.fileList[index]) {
-              uid = this.state.fileList[index].uid;
-            }
-            return {
-              uid,
-              status: 'done',
-              url: item
-            };
-          })
+          let uid = index;
+          if (this.state.fileList[index]) {
+            uid = this.state.fileList[index].uid;
+          }
+          return {
+            uid,
+            status: 'done',
+            url: item
+          };
+        })
         : [];
   }
   handlePreview = (file: UploadFile) => {

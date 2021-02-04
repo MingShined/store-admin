@@ -6,6 +6,7 @@ export const transform = (data: any, count: number, total: number) => {
   let value = count;
   if (!data || data.length === 0) {
     return null;
+    
   }
   value += 1;
   if (value > total) {

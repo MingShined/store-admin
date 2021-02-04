@@ -6,6 +6,7 @@ export default interface MenuBean {
   key?: string;
   children?: MenuBean[];
 }
+
 export enum MenuType {
   SubMenu = 'SubMenu',
   ItemGroup = 'ItemGroup',
