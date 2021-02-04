@@ -7,11 +7,7 @@
     "test": "umi test",
     "lint:test": "tslint -c tslint.json -p tsconfig.json",
     "lint:fix": "tslint -p tsconfig.json --fix",
-    "precommit": "npm run lint:test",
-    "preupload": "npm run lint:fix && git add .",
-    "upload": "node ./scripts/commit.js",
-    "postupload": "git push",
-    "demo": "node ./scripts/commit.js"
+    "commit": "node ./scripts/commit.js"
   },
   "devDependencies": {
     "@types/antd": "^1.0.0",
