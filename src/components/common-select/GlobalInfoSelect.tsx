@@ -40,11 +40,11 @@ export default class GlobalInfoSelect extends Component<GlobalInfoSelectProps> {
         <Option key="empty" value="">
           请选择
         </Option>
-        {/* {eval(`globalInfo.${type}`).map((item, index) => (
+        {eval(`globalInfo.${type}`).map((item, index) => (
             <Option key={item.id.toString()} value={item.id}>
               {item.name}
             </Option>
-          ))} */}
+          ))}
       </Select>
     );
   }
